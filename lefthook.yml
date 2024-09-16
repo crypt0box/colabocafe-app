@@ -2,7 +2,7 @@ pre-commit:
   commands:
     format:
       glob: "*.{js,ts,cjs,mjs,d.cts,d.mts,jsx,tsx,json,jsonc}"
-      run: bunx biome check --apply --no-errors-on-unmatched --files-ignore-unknown=true ./src && git update-index --again
+      run: bunx biome check --apply --no-errors-on-unmatched --files-ignore-unknown=true ./src && git update-index
 
 pre-push:
   commands:

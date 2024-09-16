@@ -8,14 +8,13 @@
     "check": "bunx biome check --write app"
   },
   "dependencies": {
+    "fast-xml-parser": "^4.5.0",
     "hono": "^4.6.1",
-    "jsdom": "^25.0.0",
     "next": "^14.2.11",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
-    "@types/jsdom": "^21.1.7",
     "@biomejs/biome": "1.9.1",
     "@cloudflare/next-on-pages": "^1.13.2",
     "@types/node": "^22.5.5",

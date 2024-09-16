@@ -1,6 +1,6 @@
 import { Hono } from 'hono'
 import { handle } from 'hono/vercel'
-import { JSDOM } from "jsdom"
+import { XMLParser } from 'fast-xml-parser'
 
 export const runtime = 'edge'
 
@@ -15,23 +15,22 @@ app.get('/hello', async(c) => {
     description: string,
     source: string
   }[] = [];
-  const dom = new JSDOM(await (await fetch('https://news.google.com/rss/search?q=コラボカフェ')).text())
-  const items = dom.window.document.querySelectorAll('item');
-  items.forEach(item => {
+  const parser = new XMLParser();
+  const dom = parser.parse(await (await fetch('https://news.google.com/rss/search?q=コラボカフェ&hl=ja&gl=JP&ceid=JP:ja')).text());
+  const items = dom.rss.channel.item;
+  items.forEach((item: { guid: string; title: string; link: string; pubDate: string; description: string; source: string }) => {
     res.push({
-      id: item.querySelector('guid')?.textContent || "",
-      title: item.querySelector('title')?.textContent || "",
-      link: item.querySelector('link')?.textContent || "",
-      publicationDate: item.querySelector('pubDate')?.textContent || "",
-      description: item.querySelector('description')?.textContent || "",
-      source: item.querySelector('source')?.textContent || ""
+      id: item.guid || "",
+      title: item.title || "",
+      link: item.link || "",
+      publicationDate: item.pubDate || "",
+      description: item.description || "",
+      source: item.source || ""
     })
-  });
+  })
 
-  console.log(res);
-  
   return c.json({
-    message: 'Hello from Hono!'
+    items: res
   })
 })
 
