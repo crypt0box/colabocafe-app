@@ -1,4 +1,4 @@
-import { D1Database } from "@cloudflare/workers-types";
+import type { D1Database } from "@cloudflare/workers-types";
 import { Hono } from "hono";
 import { handle } from "hono/vercel";
 import { XMLParser } from "fast-xml-parser";
@@ -63,7 +63,9 @@ app.get("/hello", async (c) => {
 });
 
 app.get("/query/rss", async (c) => {
-  let { results } = await process.env.DB.prepare("SELECT * FROM rss").all();
+  console.log("process", env.DB);
+  console.log("c", c.env.DB);
+  const { results } = await process.env.DB.prepare("SELECT * FROM RSS").all();
   return c.json(results);
 });
 

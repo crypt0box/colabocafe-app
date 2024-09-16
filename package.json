@@ -5,7 +5,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "check": "bunx biome check --write app"
+    "check": "bunx biome check --write app",
+    "db": "wrangler pages dev /.wrangler --d1=DB"
   },
   "dependencies": {
     "fast-xml-parser": "^4.5.0",
