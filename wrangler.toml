@@ -1,0 +1,5 @@
+[[d1_databases]]
+binding = "DB" # i.e. available in your Worker on env.DB
+database_name = "colabocafe-rss-db"
+database_id = "23c3e43d-b67c-4935-8418-eee2a3a20ba3"
+preview_database_id = "DB"
