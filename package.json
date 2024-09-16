@@ -4,7 +4,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "check": "bunx biome check --write app"
   },
   "dependencies": {
     "hono": "^4.6.1",
@@ -13,6 +14,7 @@
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
+    "@biomejs/biome": "1.9.1",
     "@cloudflare/next-on-pages": "^1.13.2",
     "@types/node": "^22.5.5",
     "@types/react": "^18.3.5",
